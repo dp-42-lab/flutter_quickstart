@@ -1,0 +1,59 @@
+name: flutter_quickstart
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '3.8.1'
+  flutter: '3.32.4'
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_route: ^10.0.1
+  cupertino_icons: ^1.0.8
+  flutter_hooks: ^0.21.2
+  flutter_svg: ^2.0.17
+  google_fonts: ^6.2.1
+  hooks_riverpod: ^2.6.1
+  riverpod: ^2.6.1
+  toastification: ^3.0.2
+  firebase_core: ^3.12.1
+  riverpod_annotation: ^2.6.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  auto_route_generator: ^10.0.1
+  build_runner: ^2.4.15
+  riverpod_lint: ^2.6.5
+  riverpod_generator: ^2.6.5
+
+flutter:
+  uses-material-design: true
+  generate: true
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Black.ttf
+          weight: 900
+        - asset: assets/fonts/NotoSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/NotoSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NotoSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/NotoSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSans-Regular.ttf
+          weight: 400
+
+    - family: Cardo
+      fonts:
+        - asset: assets/fonts/Cardo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Cardo-Regular.ttf
+          weight: 400
+  assets:
+    - assets/fonts/
+    - assets/icons/

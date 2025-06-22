@@ -1,0 +1,74 @@
+include: package:flutter_lints/flutter.yaml
+
+format:
+  line_length: 200
+
+formatter:
+  trailing_commas: preserve
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    await_only_futures: true # Ensure `await` is applied to futures
+    avoid_empty_else: true # Avoid empty else statements
+    avoid_return_types_on_setters: true # Avoid defining return types for setters
+    avoid_single_cascade_in_expression_statements: false # Avoid single cascade in expression statements
+    avoid_types_as_parameter_names: true # Avoid using types as parameter names
+    avoid_unused_constructor_parameters: true # Avoid unused constructor parameters
+    avoid_void_async: true # Avoid declaring `void` return types for `async` functions
+    camel_case_types: true # Ensure types are named using camel case
+    cancel_subscriptions: true # Ensure subscriptions are cancelled
+    close_sinks: true # Ensure sinks are closed
+    constant_identifier_names: true # Use consistent constant identifier names
+    control_flow_in_finally: true # Avoid control flow in `finally` blocks
+    curly_braces_in_flow_control_structures: false
+    directives_ordering: true # Ensure import directives ordering
+    empty_statements: true # Avoid empty statements
+    hash_and_equals: true # Override `==` and `hashCode` together
+    iterable_contains_unrelated_type: true # Avoid using `contains` with unrelated types
+    lines_longer_than_80_chars: false
+    list_remove_unrelated_type: true # Avoid using `remove` with unrelated types
+    no_duplicate_case_values: true # Disallow duplicate case values
+    non_constant_identifier_names: true # Use non-constant identifier names
+    null_closures: true # Avoid null closures
+    only_throw_errors: true # Only throw instances of `Error`
+    overridden_fields: true # Ensure fields are correctly overridden
+    package_api_docs: true # Require API documentation for public APIs
+    prefer_collection_literals: true # Prefer collection literals
+    prefer_conditional_assignment: true # Prefer conditional assignment
+    prefer_const_constructors: true # Prefer `const` constructors
+    prefer_const_declarations: true # Prefer `const` declarations
+    prefer_const_literals_to_create_immutables: true # Prefer `const` literals to create immutables
+    prefer_equal_for_default_values: true # Prefer `==` for default values
+    prefer_final_fields: true # Prefer `final` for fields
+    prefer_final_locals: true # Prefer `final` for locals
+    prefer_for_elements_to_map_fromIterable: true # Prefer `for` elements to `map` from iterable
+    prefer_generic_function_type_aliases: true # Prefer generic function type aliases
+    prefer_if_elements_to_conditional_expressions: true # Prefer `if` elements to conditional expressions
+    prefer_initializing_formals: true # Prefer initializing formals
+    prefer_interpolation_to_compose_strings: true # Prefer interpolation to compose strings
+    prefer_is_empty: true # Prefer `isEmpty`
+    prefer_is_not_empty: true # Prefer `isNotEmpty`
+    prefer_iterable_whereType: true # Prefer `Iterable.whereType`
+    prefer_relative_imports: false # Prefer relative imports
+    prefer_single_quotes: true # Prefer single quotes
+    slash_for_doc_comments: true # Use `///` for doc comments
+    type_annotate_public_apis: true # Type annotate public APIs
+    type_init_formals: true # Ensure formals are correctly initialized
+    unawaited_futures: true # Ensure futures are unawaited
+    unnecessary_brace_in_string_interps: true # Avoid unnecessary braces in string interpolations
+    unnecessary_getters_setters: true # Avoid unnecessary getters and setters
+    unnecessary_null_aware_assignments: true # Avoid unnecessary null-aware assignments
+    unnecessary_null_in_if_null_operators: true # Avoid unnecessary null in if-null operators
+    unnecessary_this: true # Avoid unnecessary `this` references
+    use_function_type_syntax_for_parameters: true # Use function type syntax for parameters
+    use_key_in_widget_constructors: true # Use `key` in widget constructors
+    use_rethrow_when_possible: true # Use `rethrow` when possible
+    valid_regexps: true # Ensure valid regular expressions
+
