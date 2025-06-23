@@ -1,11 +1,13 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../core/router/app_routes.dart';
 import '../../../modules/home/home.page.dart';
 import '../../../modules/profile/profile.page.dart';
 import '../../../modules/settings/settings.page.dart';
+import '../../../state/navigation/navigation.state.dart';
 import '../../../state/settings/theme_manager.state.dart';
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
@@ -17,8 +19,9 @@ class MainPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIndex = ref.watch(selectedIndexProvider.notifier).state;
     final pageController = usePageController(initialPage: initialIndex);
+    final navigationStateActions = ref.watch(navigationStateProvider.notifier);
+    final navigationState = ref.watch(navigationStateProvider);
 
     final themeModeNotifier = ref.watch(themeManagerProvider.notifier);
     final themeMode = ref.watch(themeManagerProvider);
@@ -31,12 +34,80 @@ class MainPage extends HookConsumerWidget {
 
     final List<Widget> pageOptions = [const HomePage(), const ProfilePage(), const SettingsPage()];
 
-    return Scaffold(
+    useEffect(() {
+      Future.microtask(() {
+        if (pageController.hasClients && pageController.page?.round() != navigationState.currentPage) {
+          pageController.jumpToPage(navigationState.currentPage);
+        }
+      });
+      return null;
+    }, [navigationState.currentPage]);
+
+    return AutoTabsRouter.pageView(
+      routes: const [
+        HomeRoute(),
+        ProfileRoute(),
+        SettingsRoute(),
+      ],
+      builder: (context, child, _) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(context.topRoute.name),
+            leading: AutoLeadingButton(),
+          ),
+          body: child,
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: tabsRouter.activeIndex,
+            onDestinationSelected: tabsRouter.setActiveIndex,
+            destinations: const [
+              NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+              NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+              NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+            ],
+          ),
+        );
+      },
+    );
+    /*    return AutoTabsRouter(
+      routes: const [
+        HomeRoute(),
+        ProfileRoute(),
+        SettingsRoute(),
+      ],
+      builder: (context, child, animation) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        return Scaffold(
+          body: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: tabsRouter.activeIndex,
+            onDestinationSelected: tabsRouter.setActiveIndex,
+            destinations: const [
+              NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+              NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+              NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+            ],
+          ),
+        );
+      },
+    );*/ /*    return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "FQ",
+          style: AppTextStyle.decorativeTextBold(fontSize: 18),
+        ),
         elevation: 3.0,
-        actions: const [
-          CircleAvatar(child: Text('FQ')),
-          SizedBox(width: 16),
+        actions: [
+          IconButton.outlined(
+            onPressed: themeModeNotifier.toggleTheme,
+            icon: SvgIcon(
+              iconName: themeMode == ThemeMode.light ? SvgIconType.sun : SvgIconType.moon,
+            ),
+          ),
+          const SizedBox(width: 16),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -45,21 +116,16 @@ class MainPage extends HookConsumerWidget {
       body: SafeArea(
         child: PageView(
           controller: pageController,
+          onPageChanged: navigationStateActions.setPage,
           children: pageOptions,
-          onPageChanged: (index) {
-            ref.watch(selectedIndexProvider.notifier).state = index;
-          },
         ), // Der dynamische Inhalt der Seite wird hier eingefügt
       ),
       bottomNavigationBar: NavigationBar(
         elevation: 3.0,
         destinations: destinations,
-        selectedIndex: selectedIndex,
-        onDestinationSelected: (index) {
-          ref.watch(selectedIndexProvider.notifier).state = index;
-          pageController.jumpToPage(index);
-        },
+        selectedIndex: navigationState.currentPage,
+        onDestinationSelected: navigationStateActions.setPage,
       ),
-    );
+    );*/
   }
 }

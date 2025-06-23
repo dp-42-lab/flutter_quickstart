@@ -22,7 +22,11 @@ void main() {
     });
   });
 
-  runApp(const ProviderScope(child: SafeArea(child: ToastificationWrapper(child: App()))));
+  runApp(
+    const ProviderScope(
+      child: SafeArea(child: ToastificationWrapper(child: App())),
+    ),
+  );
 }
 
 class App extends HookConsumerWidget {
@@ -38,7 +42,7 @@ class App extends HookConsumerWidget {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Dont Panic!',
+      title: 'Flutter Quickstart!',
       theme: theme.light(),
       darkTheme: theme.dark(),
       themeMode: themeMode,

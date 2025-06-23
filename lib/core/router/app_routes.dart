@@ -13,32 +13,24 @@ part 'app_routes.gr.dart';
 class AppRouter extends RootStackRouter {
   final _slideLeftTransition = TransitionsBuilders.slideLeft;
   final _fadeInTransition = TransitionsBuilders.fadeIn;
-  final _slideBottomTransition = TransitionsBuilders.slideBottom;
 
   @override
   List<AutoRoute> get routes => [
-    CustomRoute(page: SplashRoute.page, initial: true, transitionsBuilder: TransitionsBuilders.fadeIn),
-    ..._getDefaultTransitionRoutes(),
-  ];
+    CustomRoute(
+      page: SplashRoute.page,
+      initial: true,
+      transitionsBuilder: _fadeInTransition,
+    ),
 
-  List<AutoRoute> _getDefaultTransitionRoutes() {
-    return [
-      CustomRoute(
-        page: HomeRoute.page,
-        path: '/',
-        transitionsBuilder: _slideLeftTransition,
-      ),
-      CustomRoute(
-        page: SettingsRoute.page,
-        path: '/settings',
-        transitionsBuilder: _slideLeftTransition,
-      ),
-      CustomRoute(
-        page: ProfileRoute.page,
-        path: '/profile',
-        transitionsBuilder: _slideLeftTransition,
-      ),
-      CustomRoute(page: MainRoute.page, transitionsBuilder: _slideLeftTransition),
-    ];
-  }
+    CustomRoute(
+      page: MainRoute.page,
+      path: '/',
+      transitionsBuilder: _slideLeftTransition,
+      children: [
+        AutoRoute(page: HomeRoute.page, path: 'home'),
+        AutoRoute(page: ProfileRoute.page, path: 'profile'),
+        AutoRoute(page: SettingsRoute.page, path: 'settings'),
+      ],
+    ),
+  ];
 }

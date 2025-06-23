@@ -1,10 +1,15 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'navigation.state.model.dart';
 
-final navigationStateProvider = StateNotifierProvider<NavigationState, NavigationStateModel>((ref) => NavigationState(ref));
+part 'navigation.state.g.dart';
 
-class NavigationState extends StateNotifier<NavigationStateModel> {
-  final Ref ref;
-  NavigationState(this.ref) : super(const NavigationStateModel(currentPage: 0));
+@Riverpod(keepAlive: true)
+class NavigationState extends _$NavigationState {
+  @override
+  NavigationStateModel build() => const NavigationStateModel(currentPage: 0);
+
+  void setPage(int index) {
+    state = state.copyWith(currentPage: index);
+  }
 }
