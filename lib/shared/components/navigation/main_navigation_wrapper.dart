@@ -54,7 +54,7 @@ class MainPage extends HookConsumerWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(context.topRoute.name),
-            leading: AutoLeadingButton(),
+            leading: const AutoLeadingButton(),
           ),
           body: child,
           bottomNavigationBar: NavigationBar(
@@ -69,63 +69,5 @@ class MainPage extends HookConsumerWidget {
         );
       },
     );
-    /*    return AutoTabsRouter(
-      routes: const [
-        HomeRoute(),
-        ProfileRoute(),
-        SettingsRoute(),
-      ],
-      builder: (context, child, animation) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        return Scaffold(
-          body: FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-          bottomNavigationBar: NavigationBar(
-            selectedIndex: tabsRouter.activeIndex,
-            onDestinationSelected: tabsRouter.setActiveIndex,
-            destinations: const [
-              NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-              NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-              NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
-            ],
-          ),
-        );
-      },
-    );*/ /*    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "FQ",
-          style: AppTextStyle.decorativeTextBold(fontSize: 18),
-        ),
-        elevation: 3.0,
-        actions: [
-          IconButton.outlined(
-            onPressed: themeModeNotifier.toggleTheme,
-            icon: SvgIcon(
-              iconName: themeMode == ThemeMode.light ? SvgIconType.sun : SvgIconType.moon,
-            ),
-          ),
-          const SizedBox(width: 16),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      extendBody: true,
-      floatingActionButton: FloatingActionButton(onPressed: () {}, shape: const CircleBorder(), child: const Icon(Icons.add)),
-      body: SafeArea(
-        child: PageView(
-          controller: pageController,
-          onPageChanged: navigationStateActions.setPage,
-          children: pageOptions,
-        ), // Der dynamische Inhalt der Seite wird hier eingefügt
-      ),
-      bottomNavigationBar: NavigationBar(
-        elevation: 3.0,
-        destinations: destinations,
-        selectedIndex: navigationState.currentPage,
-        onDestinationSelected: navigationStateActions.setPage,
-      ),
-    );*/
   }
 }

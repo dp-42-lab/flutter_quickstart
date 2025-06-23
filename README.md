@@ -1,17 +1,19 @@
 # flutter_quickstart
 
-A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### For Android
 
-A few resources to get you started if this is your first Flutter project:
+- create a settings.gradle.kts in `/android/...`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+content 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# flutter_quickstart
+```
+sdk.dir=...path to sdk
+flutter.sdk=...path to flutter sdk
+flutter.buildMode=debug
+flutter.versionName=1.0.0
+flutter.versionCode=1
+```
+
